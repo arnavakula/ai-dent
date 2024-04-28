@@ -15,8 +15,9 @@ def run_model(filename):
     img = cv2.imread(filename)
 
     res = model.predict(img, save=True, save_txt=True, project='runs', name=f'photo')
+    fp = res[0].save_dir
 
-    with open(f'{res[0].save_dir}/labels/image0.txt', 'r') as f:
+    with open(f'{fp}/labels/image0.txt', 'r') as f:
         s = f.read()
 
     x = s.split('\n')
@@ -61,4 +62,4 @@ def run_model(filename):
 
     cv2.imwrite('static/output/output.jpg', img)
 
-    return has_disease
+    return (has_disease, f'{fp}')
