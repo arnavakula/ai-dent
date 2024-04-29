@@ -14,7 +14,7 @@ def run_model(filename):
 
     img = cv2.imread(filename)
 
-    res = model.predict(img, save=True, save_txt=True, project='runs', name=f'photo')
+    res = model.predict(img, save=True, save_txt=True, project='runs', name='photo')
     fp = res[0].save_dir
 
     with open(f'{fp}/labels/image0.txt', 'r') as f:
